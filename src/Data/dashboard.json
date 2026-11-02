@@ -1,0 +1,7 @@
+{
+  "recents": [
+    { "id": 1, "origin": "Parada Portal Norte", "dest": "Parada Calle 100", "meta": "8 paradas · Ruta Autopista Norte" },
+    { "id": 2, "origin": "Parada Usaquén Centro", "dest": "Parada Toberín", "meta": "4 paradas · Ruta Usaquén - Toberín" },
+    { "id": 3, "origin": "Parada Rosales", "dest": "Parada Alcalá", "meta": "6 paradas · Ruta Chicó - Rosales" }
+  ]
+}

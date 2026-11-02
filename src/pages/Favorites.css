@@ -1,0 +1,258 @@
+.fav-screen {
+  min-height: 100svh;
+  background: var(--bg);
+  padding: 20px 20px 96px;
+  position: relative;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.fav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.fav-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.count-badge {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
+}
+
+.fav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fav-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 12px 14px;
+  box-shadow: 0 4px 16px rgba(30, 78, 140, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  max-height: 140px;
+  overflow: hidden;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.badge-green {
+  background: #DCFCE7;
+  color: #16A34A;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.heart-btn {
+  background: none;
+  border: none;
+  color: #DC2626;
+  font-size: 18px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.route-points {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.point-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot.blue {
+  background: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.dot.green {
+  background: #16A34A;
+  box-shadow: 0 0 0 3px #DCFCE7;
+}
+
+.point-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  min-width: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.point-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  gap: 2px;
+}
+.point-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.route-arrow {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 17px;
+  color: var(--primary);
+  font-size: 12px;
+  margin: 2px 0;
+}
+
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+  min-width: 0;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.footer-left i {
+  color: var(--primary);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.bus-status {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 420px;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  z-index: 1100;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 11px;
+  padding: 6px 0;
+  transition: color 0.2s;
+}
+
+.tab i {
+  font-size: 18px;
+}
+
+.tab.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.home-indicator {
+  position: absolute;
+  bottom: max(8px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+/* ---------- Desktop adaptation ---------- */
+@media (min-width: 900px) {
+  .fav-screen {
+    width: 100%;
+    max-width: 100%;
+    padding: 40px 64px 96px;
+  }
+
+  .tab-bar {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    transform: none;
+  }
+
+  .fav-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+}

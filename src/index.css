@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #1E4E8C;
+  --primary-dark: #143A6B;
+  --primary-light: #E8F0FA;
+  --primary-soft: #DCE8F7;
+  --text: #1F2937;
+  --text-soft: #4B5563;
+  --muted: #6B7280;
+  --placeholder: #9CA3AF;
+  --border: #E5E7EB;
+  --border-strong: #D1D5DB;
+  --bg: #F5F7FB;
+  --white: #FFFFFF;
+  --danger: #DC2626;
+  --success: #16A34A;
+
+  --font: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  color-scheme: light;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100svh;
+  background: linear-gradient(135deg, #DBEAFE 0%, #EFF6FF 45%, #E0E7FF 100%);
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input {
+  font: inherit;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --primary: #60A5FA;
+  --primary-dark: #93C5FD;
+  --primary-light: #1E3A8A;
+  --primary-soft: #1E40AF;
+  --text: #F1F5F9;
+  --text-soft: #CBD5E1;
+  --muted: #94A3B8;
+  --placeholder: #64748B;
+  --border: #334155;
+  --border-strong: #475569;
+  --bg: #0F172A;
+  --white: #1E293B;
+  --danger: #F87171;
+  --success: #4ADE80;
+}
+
+html[data-theme="dark"] body {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #1E3A8A 100%);
+  background-attachment: fixed;
+}
+
+html[data-theme="dark"] .uber-logo {
+  color: #F1F5F9;
+}
