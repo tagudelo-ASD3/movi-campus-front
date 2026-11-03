@@ -34,7 +34,7 @@ function validate(form) {
   if (!form.name.trim()) errors.name = 'Ingresa tu nombre.'
   if (!form.lastName.trim()) errors.lastName = 'Ingresa tu apellido.'
   const digits = form.phone.replace(/\D/g, '')
-  if (form.phone.trim() && (!/^\+?[\d\s-]+$/.test(form.phone.trim()) || digits.length < 7)) {
+  if (form.phone.trim() && (!/^\+?[\d\s()-]+$/.test(form.phone.trim()) || digits.length < 7 || digits.length > 15)) {
     errors.phone = 'Ingresa un teléfono válido, por ejemplo +57 1234 5678.'
   }
   if (!form.career.trim()) errors.career = 'Ingresa tu carrera.'
@@ -61,6 +61,17 @@ function ResultPopup({ type, onPrimary, onCancel }) {
   const primaryRef = useRef(null)
 
   useEffect(() => { primaryRef.current?.focus() }, [])
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key !== 'Escape') return
+      e.preventDefault()
+      if (isSuccess) onPrimary()
+      else onCancel()
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [isSuccess, onPrimary, onCancel])
 
   return (
     <div className="profile-popup-backdrop">
@@ -113,6 +124,9 @@ export default function Profile({ screen, onNavigate }) {
   const [saving, setSaving] = useState(false)
   const [result, setResult] = useState(null)
   const fileRef = useRef(null)
+  const saveRef = useRef(null)
+  const editLinkRef = useRef(null)
+  const focusEditLink = useRef(false)
 
   useEffect(() => {
     setNotificationPrefs(prefs)
@@ -134,8 +148,21 @@ export default function Profile({ screen, onNavigate }) {
   const closeEdit = () => {
     setEditing(false)
     setResult(null)
+    focusEditLink.current = true
     window.scrollTo?.(0, 0)
   }
+
+  const cancelResult = () => {
+    setResult(null)
+    saveRef.current?.focus()
+  }
+
+  useEffect(() => {
+    if (!editing && focusEditLink.current) {
+      focusEditLink.current = false
+      editLinkRef.current?.focus()
+    }
+  }, [editing])
 
   const updateField = (key, value) => {
     setForm((f) => ({ ...f, [key]: value }))
@@ -233,7 +260,7 @@ export default function Profile({ screen, onNavigate }) {
           ))}
 
           <div className="edit-profile-actions">
-            <button type="submit" className="edit-profile-save" disabled={saving}>
+            <button ref={saveRef} type="submit" className="edit-profile-save" disabled={saving}>
               {saving ? 'Guardando…' : 'Guardar cambios'}
             </button>
           </div>
@@ -243,7 +270,7 @@ export default function Profile({ screen, onNavigate }) {
           <ResultPopup
             type={result}
             onPrimary={result === 'success' ? closeEdit : () => { setResult(null); save() }}
-            onCancel={() => setResult(null)}
+            onCancel={cancelResult}
           />
         )}
 
@@ -262,7 +289,7 @@ export default function Profile({ screen, onNavigate }) {
         <div className="profile-info">
           <h1 className="profile-name">{user.name}</h1>
           <p className="profile-email">{user.email}</p>
-          <button type="button" className="edit-link" onClick={openEdit}>Editar perfil</button>
+          <button ref={editLinkRef} type="button" className="edit-link" onClick={openEdit}>Editar perfil</button>
         </div>
       </header>
 

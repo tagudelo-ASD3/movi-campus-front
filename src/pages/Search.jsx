@@ -453,7 +453,7 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
               {routeError && <span style={{ color: '#c0392b' }}>{routeError}</span>}
               {routeInfo && !routeLoading && (
                 <span>
-                  Ruta: {(routeInfo.distance / 1000).toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} km · {Math.round(routeInfo.duration / 60)} min
+                  Ruta: {routeInfo.distance < 1000 ? `${Math.round(routeInfo.distance)} m` : `${(routeInfo.distance / 1000).toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} km`} · {Math.round(routeInfo.duration / 60)} min
                 </span>
               )}
             </div>

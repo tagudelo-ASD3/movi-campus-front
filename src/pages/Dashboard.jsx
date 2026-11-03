@@ -7,6 +7,7 @@ import favoritesData from '../Data/favorites.json'
 import { loadProfile } from '../services/profile.js'
 import { seedNotifications, getNotifications, markAllNotificationsRead } from '../services/notifications.js'
 import BottomNav from '../components/BottomNav.jsx'
+import defaultAvatar from '../assets/images/avatar-default.png'
 
 const favorites = favoritesData
 const recents = dashboardData.recents
@@ -37,7 +38,7 @@ export default function Dashboard({ screen, onNavigate }) {
         <div className="dash-header-actions">
           <button
             className="notif-btn"
-            aria-label="Notificaciones"
+            aria-label={unreadCount > 0 ? `Notificaciones, ${unreadCount} sin leer` : 'Notificaciones'}
             onClick={() => {
               const next = !showNotifications
               setShowNotifications(next)
@@ -51,11 +52,7 @@ export default function Dashboard({ screen, onNavigate }) {
             {unreadCount > 0 && <span className="notif-badge">{unreadCount}</span>}
           </button>
           <div className="avatar">
-            {user.photo ? (
-              <img src={user.photo} alt="Foto de perfil" className="avatar-img" />
-            ) : (
-              <i className="fa-solid fa-user" aria-hidden="true" />
-            )}
+            <img src={user.photo || defaultAvatar} alt="Foto de perfil" className="avatar-img" />
           </div>
         </div>
       </header>
