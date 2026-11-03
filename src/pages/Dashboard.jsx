@@ -47,21 +47,21 @@ export default function Dashboard({ screen, onNavigate }) {
               }
             }}
           >
-            <i className="fa-solid fa-bell" />
+            <i className="fa-solid fa-bell" aria-hidden="true" />
             {unreadCount > 0 && <span className="notif-badge">{unreadCount}</span>}
           </button>
-          <div className="avatar" aria-label="Perfil">
+          <div className="avatar">
             {user.photo ? (
               <img src={user.photo} alt="Foto de perfil" className="avatar-img" />
             ) : (
-              <i className="fa-solid fa-user" />
+              <i className="fa-solid fa-user" aria-hidden="true" />
             )}
           </div>
         </div>
       </header>
 
       <div className="search-wrap">
-        <i className="fa-solid fa-magnifying-glass search-icon" />
+        <i className="fa-solid fa-magnifying-glass search-icon" aria-hidden="true" />
         <input
           type="text"
           placeholder="Buscar paradas de la universidad..."
@@ -83,7 +83,7 @@ export default function Dashboard({ screen, onNavigate }) {
                     onNavigate?.('search', s.name)
                   }}
                 >
-                  <i className="fa-solid fa-location-dot" />
+                  <i className="fa-solid fa-location-dot" aria-hidden="true" />
                   <div className="suggest-body">
                     <p className="suggest-name">{s.name}</p>
                     <p className="suggest-route">{(s.routes || [s.route]).join(', ')}</p>
@@ -114,7 +114,7 @@ export default function Dashboard({ screen, onNavigate }) {
               onClick={() => setShowNotifications(false)}
               aria-label="Cerrar notificaciones"
             >
-              <i className="fa-solid fa-xmark" />
+              <i className="fa-solid fa-xmark" aria-hidden="true" />
             </button>
           </div>
           <div className="notif-list">
@@ -133,7 +133,7 @@ export default function Dashboard({ screen, onNavigate }) {
 
         <section className="section">
           <div className="section-head">
-            <h2>Rutas Favoritas</h2>
+            <h2>Rutas favoritas</h2>
             <a
               href="#ver-todo"
               className="see-all"
@@ -169,7 +169,7 @@ export default function Dashboard({ screen, onNavigate }) {
                 </div>
                 <div className="card-footer">
                   <div className="footer-left">
-                    <i className="fa-solid fa-route" />
+                    <i className="fa-solid fa-route" aria-hidden="true" />
                     <span>{f.stops} paradas</span>
                   </div>
                   <span className="bus-status">{f.bus}</span>
@@ -178,7 +178,7 @@ export default function Dashboard({ screen, onNavigate }) {
                     aria-label="Quitar de favoritos"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <i className="fa-solid fa-heart" />
+                    <i className="fa-solid fa-heart" aria-hidden="true" />
                   </button>
                 </div>
               </article>
@@ -188,7 +188,7 @@ export default function Dashboard({ screen, onNavigate }) {
 
         <section className="section">
           <div className="section-head">
-            <h2>Últimas Rutas</h2>
+            <h2>Últimas rutas</h2>
           </div>
           <div className="recent-list">
             {recents.map((r) => (
@@ -201,7 +201,7 @@ export default function Dashboard({ screen, onNavigate }) {
                 }}
               >
                 <div className="recent-icon">
-                  <i className="fa-solid fa-diagram-project" />
+                  <i className="fa-solid fa-diagram-project" aria-hidden="true" />
                 </div>
                 <div className="recent-body">
                   <p className="recent-route">{r.origin} → {r.dest}</p>

@@ -51,7 +51,7 @@ export default function Login({ onNavigate }) {
           </svg>
           <div className="brand-card">
             <div className="brand-icon">
-              <i className="fa-solid fa-route" />
+              <i className="fa-solid fa-route" aria-hidden="true" />
             </div>
             <span className="brand-name">MoviCampus</span>
           </div>
@@ -63,13 +63,13 @@ export default function Login({ onNavigate }) {
 
           <form className="form" onSubmit={handleSubmit}>
             <div className="field">
-              <label htmlFor="email">Correo Universitario</label>
+              <label htmlFor="email">Correo universitario</label>
               <div className="input-wrap">
-                <i className="fa-regular fa-envelope input-icon" />
+                <i className="fa-regular fa-envelope input-icon" aria-hidden="true" />
                 <input
                   id="email"
                   type="email"
-                  placeholder="ejemplo@universidad.edu"
+                  placeholder="ejemplo@ibero.edu.co"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   autoComplete="email"
@@ -80,7 +80,7 @@ export default function Login({ onNavigate }) {
             <div className="field">
               <label htmlFor="password">Contraseña</label>
               <div className="input-wrap">
-                <i className="fa-solid fa-lock input-icon" />
+                <i className="fa-solid fa-lock input-icon" aria-hidden="true" />
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
@@ -95,13 +95,13 @@ export default function Login({ onNavigate }) {
                   onClick={() => setShowPassword((v) => !v)}
                   aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                 >
-                  <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} />
+                  <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} aria-hidden="true" />
                 </button>
               </div>
             </div>
 
             <button type="submit" className="btn-primary">
-              Iniciar Sesión
+              Iniciar sesión
             </button>
           </form>
 
@@ -124,10 +124,10 @@ export default function Login({ onNavigate }) {
 
 <div className="social-row">
             <button type="button" className="btn-social" onClick={() => { try { loginWithGoogle() } catch {} if (onNavigate) onNavigate('dashboard') }}>
-              <i className="fa-brands fa-google" /> Google
+              <i className="fa-brands fa-google" aria-hidden="true" /> Google
             </button>
             <button type="button" className="btn-social" onClick={() => { try { loginWithApple() } catch {} if (onNavigate) onNavigate('dashboard') }}>
-              <i className="fa-brands fa-apple" /> Apple
+              <i className="fa-brands fa-apple" aria-hidden="true" /> Apple
             </button>
           </div>
         </main>

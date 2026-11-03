@@ -5,6 +5,7 @@
   --primary-dark: #143A6B;
   --primary-light: #E8F0FA;
   --primary-soft: #DCE8F7;
+  --on-primary: #FFFFFF;
   --text: #1F2937;
   --text-soft: #4B5563;
   --muted: #6B7280;
@@ -81,6 +82,7 @@ input {
   --primary-dark: #93C5FD;
   --primary-light: #1E3A8A;
   --primary-soft: #1E40AF;
+  --on-primary: #0F172A;
   --text: #F1F5F9;
   --text-soft: #CBD5E1;
   --muted: #94A3B8;

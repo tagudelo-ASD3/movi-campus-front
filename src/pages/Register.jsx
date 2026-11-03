@@ -47,7 +47,7 @@ export default function Register({ onNavigate }) {
           </svg>
           <div className="brand-card">
             <div className="brand-icon">
-              <i className="fa-solid fa-route" />
+              <i className="fa-solid fa-route" aria-hidden="true" />
             </div>
             <span className="brand-name">MoviCampus</span>
           </div>
@@ -61,7 +61,7 @@ export default function Register({ onNavigate }) {
             <div className="field">
               <label htmlFor="name">Nombre</label>
               <div className="input-wrap">
-                <i className="fa-regular fa-user input-icon" />
+                <i className="fa-regular fa-user input-icon" aria-hidden="true" />
                 <input
                   id="name"
                   type="text"
@@ -75,13 +75,13 @@ export default function Register({ onNavigate }) {
             </div>
 
             <div className="field">
-              <label htmlFor="email">Correo Universitario</label>
+              <label htmlFor="email">Correo universitario</label>
               <div className="input-wrap">
-                <i className="fa-regular fa-envelope input-icon" />
+                <i className="fa-regular fa-envelope input-icon" aria-hidden="true" />
                 <input
                   id="email"
                   type="email"
-                  placeholder="ejemplo@universidad.edu"
+                  placeholder="ejemplo@ibero.edu.co"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   autoComplete="email"
@@ -93,7 +93,7 @@ export default function Register({ onNavigate }) {
             <div className="field">
               <label htmlFor="password">Contraseña</label>
               <div className="input-wrap">
-                <i className="fa-solid fa-lock input-icon" />
+                <i className="fa-solid fa-lock input-icon" aria-hidden="true" />
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
@@ -109,7 +109,7 @@ export default function Register({ onNavigate }) {
                   onClick={() => setShowPassword((v) => !v)}
                   aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                 >
-                  <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} />
+                  <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`} aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -117,7 +117,7 @@ export default function Register({ onNavigate }) {
             <div className="field">
               <label htmlFor="confirmPassword">Confirmar contraseña</label>
               <div className="input-wrap">
-                <i className="fa-solid fa-lock input-icon" />
+                <i className="fa-solid fa-lock input-icon" aria-hidden="true" />
                 <input
                   id="confirmPassword"
                   type={showPassword ? 'text' : 'password'}
@@ -146,7 +146,7 @@ export default function Register({ onNavigate }) {
                 if (onNavigate) onNavigate('login')
               }}
             >
-              Iniciar Sesión
+              Iniciar sesión
             </a>
           </p>
 
@@ -156,10 +156,10 @@ export default function Register({ onNavigate }) {
 
           <div className="social-row">
             <button type="button" className="btn-social" onClick={handleGoogle}>
-              <i className="fa-brands fa-google" /> Google
+              <i className="fa-brands fa-google" aria-hidden="true" /> Google
             </button>
             <button type="button" className="btn-social" onClick={handleApple}>
-              <i className="fa-brands fa-apple" /> Apple
+              <i className="fa-brands fa-apple" aria-hidden="true" /> Apple
             </button>
           </div>
         </main>

@@ -73,7 +73,7 @@ export default function Routes({ screen, onNavigate }) {
           iconSize: [20, 20],
           iconAnchor: [10, 20],
         })
-        const m = L.marker([s.lat, s.lon], { icon }).addTo(mapInstance.current).bindPopup(`${idx + 1}. ${s.name}`)
+        const m = L.marker([s.lat, s.lon], { icon, title: `${idx + 1}. ${s.name}` }).addTo(mapInstance.current).bindPopup(`${idx + 1}. ${s.name}`)
         markersRef.current.push(m)
       })
       if (pts.length < 2) {
@@ -147,7 +147,7 @@ export default function Routes({ screen, onNavigate }) {
               }}
             >
               <div className="stop-icon active">
-                <i className="fa-solid fa-route" />
+                <i className="fa-solid fa-route" aria-hidden="true" />
               </div>
               <div className="stop-body">
                 <p className="stop-name">{r.name}</p>
@@ -173,7 +173,7 @@ export default function Routes({ screen, onNavigate }) {
             {selectedStops.map((stopName, idx) => (
               <div className="stop-card" key={`${stopName}-${idx}`}>
                 <div className={`stop-icon ${idx === 0 || idx === selectedStops.length - 1 ? 'active' : ''}`}>
-                  <i className={`fa-solid ${idx === 0 ? 'fa-location-dot' : idx === selectedStops.length - 1 ? 'fa-flag-checkered' : 'fa-circle'}`} />
+                  <i className={`fa-solid ${idx === 0 ? 'fa-location-dot' : idx === selectedStops.length - 1 ? 'fa-flag-checkered' : 'fa-circle'}`} aria-hidden="true" />
                 </div>
                 <div className="stop-body">
                   <p className="stop-name">{stopName}</p>
@@ -185,7 +185,7 @@ export default function Routes({ screen, onNavigate }) {
             ))}
           </div>
           <p className="stop-route" style={{ marginTop: 8 }}>
-            Te sirven estos buses:{' '}
+            {selectedBuses.length === 1 ? 'Te sirve este bus:' : 'Te sirven estos buses:'}{' '}
             {selectedBuses.length
               ? selectedBuses.map((b) => `${b.code} (en ${b.eta})`).join(', ')
               : 'sin buses disponibles'}

@@ -1,7 +1,7 @@
 {
   "routes": [
-    { "id": 1, "name": "Ruta Autopista Norte", "color": "#1E4E8C", "stops": ["Parada Portal Norte", "Parada Calle 161", "Parada Calle 147", "Parada Calle 140", "Parada Calle 127", "Parada Calle 116", "Parada Calle 106", "Parada Calle 100"] },
-    { "id": 2, "name": "Ruta Usaquén - Toberín", "color": "#27ae60", "stops": ["Parada Calle 116", "Parada Usaquén Centro", "Parada Cedritos", "Parada Mazurén", "Parada Toberín"] },
-    { "id": 3, "name": "Ruta Chicó - Rosales", "color": "#e67e22", "stops": ["Parada Rosales", "Parada Calle 100", "Parada Country", "Parada San Patricio", "Parada Chicó Norte", "Parada Alcalá"] }
+    {"id": 1, "name": "Ruta Campus Norte", "color": "#1E4E8C", "stops": ["Parada Biblioteca Principal", "Parada Comedor", "Parada Fac. Ingeniería", "Parada Estacionamiento Norte"]},
+    {"id": 2, "name": "Ruta Acceso Norte", "color": "#27ae60", "stops": ["Parada Estacionamiento Norte", "Parada Comedor", "Parada Gimnasio", "Parada Deportivo", "Parada Auditorio Mayor"]},
+    {"id": 3, "name": "Ruta Campus Sur", "color": "#e67e22", "stops": ["Parada Rectoría", "Parada Estacionamiento Sur", "Parada Biblioteca Principal"]}
   ]
 }
