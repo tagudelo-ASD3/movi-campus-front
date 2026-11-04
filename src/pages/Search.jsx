@@ -3,6 +3,13 @@ import './Search.css'
 import searchData from '../Data/search.json'
 import { findJourney } from '../services/transit.js'
 import BottomNav from '../components/BottomNav.jsx'
+import startDotIcon from '../assets/icons/start-dot.svg'
+import endTriangleIcon from '../assets/icons/end-triangle.svg'
+import chevronDownIcon from '../assets/icons/chevron-down.svg'
+import arrowUpDownIcon from '../assets/icons/arrow-up-down.svg'
+import mapPinIcon from '../assets/icons/map-pin.svg'
+import mapPinSelectedIcon from '../assets/icons/map-pin-selected.svg'
+import checkIcon from '../assets/icons/check.svg'
 
 const stops = searchData.stops
 
@@ -93,19 +100,19 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
     if (routeLayerRef.current) { routeLayerRef.current.remove(); routeLayerRef.current = null }
     const points = []
     if (userPos) {
-      const m = L.marker([userPos.lat, userPos.lon], { icon: userIcon }).addTo(mapInstance.current).bindPopup('Estás aquí').bindTooltip('Estás aquí', { permanent: true, direction: 'top' })
+      const m = L.marker([userPos.lat, userPos.lon], { icon: userIcon, title: 'Estás aquí' }).addTo(mapInstance.current).bindPopup('Estás aquí').bindTooltip('Estás aquí', { permanent: true, direction: 'top' })
       markersRef.current.push(m)
       points.push([userPos.lat, userPos.lon])
     }
     const originStop = stops.find((s) => s.name === origin && s.lat && s.lon)
     const destStop = stops.find((s) => s.name === dest && s.lat && s.lon)
     if (originStop) {
-      const m = L.marker([originStop.lat, originStop.lon], { icon: originIcon }).addTo(mapInstance.current).bindPopup(`Origen: ${originStop.name}`)
+      const m = L.marker([originStop.lat, originStop.lon], { icon: originIcon, title: `Origen: ${originStop.name}` }).addTo(mapInstance.current).bindPopup(`Origen: ${originStop.name}`)
       markersRef.current.push(m)
       points.push([originStop.lat, originStop.lon])
     }
     if (destStop) {
-      const m = L.marker([destStop.lat, destStop.lon], { icon: destIcon }).addTo(mapInstance.current).bindPopup(`Destino: ${destStop.name}`)
+      const m = L.marker([destStop.lat, destStop.lon], { icon: destIcon, title: `Destino: ${destStop.name}` }).addTo(mapInstance.current).bindPopup(`Destino: ${destStop.name}`)
       markersRef.current.push(m)
       points.push([destStop.lat, destStop.lon])
     }
@@ -155,7 +162,7 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
             iconSize: [20, 20],
             iconAnchor: [10, 20],
           })
-          const m = L.marker([s.lat, s.lon], { icon }).addTo(mapInstance.current).bindPopup(`${idx + 1}. ${s.name}`)
+          const m = L.marker([s.lat, s.lon], { icon, title: `${idx + 1}. ${s.name}` }).addTo(mapInstance.current).bindPopup(`${idx + 1}. ${s.name}`)
           markersRef.current.push(m)
         })
         if (userPos) {
@@ -165,7 +172,7 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
             iconSize: [22, 22],
             iconAnchor: [11, 22],
           })
-          const m = L.marker([userPos.lat, userPos.lon], { icon: userIcon }).addTo(mapInstance.current).bindPopup('Estás aquí')
+          const m = L.marker([userPos.lat, userPos.lon], { icon: userIcon, title: 'Estás aquí' }).addTo(mapInstance.current).bindPopup('Estás aquí')
           markersRef.current.push(m)
         }
         return
@@ -242,20 +249,20 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
     setDest(origin)
   }
 
-  const fieldQuery = activeField === 'origin' ? origin : activeField === 'dest' ? dest : ''
-  const otherField = activeField === 'origin' ? dest : activeField === 'dest' ? origin : ''
-  const suggestions = fieldQuery.trim()
-    ? stops.filter((s) => `${s.name} ${(s.routes || [s.route]).join(' ')}`.toLowerCase().includes(fieldQuery.toLowerCase()) && s.name !== otherField)
-    : stops.filter((s) => s.name !== otherField)
+  const targetField = activeField || (!origin.trim() ? 'origin' : !dest.trim() ? 'dest' : null)
+  const targetValue = targetField === 'origin' ? origin : targetField === 'dest' ? dest : ''
+  const otherField = targetField === 'origin' ? dest : targetField === 'dest' ? origin : ''
+  const isExactStop = stops.some((s) => s.name === targetValue)
+  const fieldQuery = isExactStop ? '' : targetValue.trim().toLowerCase()
+  const suggestions = stops.filter((s) =>
+    s.name !== otherField &&
+    (!fieldQuery || `${s.name} ${(s.routes || [s.route]).join(' ')}`.toLowerCase().includes(fieldQuery))
+  )
 
   const selectStop = (s) => {
-    const other = activeField === 'origin' ? dest : origin
-    if (s.name === other) {
-      setActiveField(null)
-      return
-    }
-    if (activeField === 'origin') setOrigin(s.name)
-    else if (activeField === 'dest') setDest(s.name)
+    if (s.name === otherField) return
+    if (targetField === 'origin') setOrigin(s.name)
+    else if (targetField === 'dest') setDest(s.name)
     setActiveField(null)
   }
 
@@ -290,83 +297,80 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
   return (
     <div className="search-screen">
       <div className="search-content">
-        <div className="search-left">
-          <div className="route-fields" ref={fieldsRef}>
-            <div className={`field origin ${activeField === 'origin' ? 'active' : ''}`}>
-              <div className="field-body">
-                <span className="field-label">Origen</span>
-                <input
-                  type="text"
-                  className="field-input"
-                  value={origin}
-                  placeholder="Parada de origen"
-                  onFocus={() => setActiveField('origin')}
-                  onChange={(e) => { setOrigin(e.target.value); setActiveField('origin') }}
-                />
+        <div className="search-left" ref={fieldsRef}>
+          <div className="search-panel">
+            <div className="route-fields">
+              <div className="route-inputs">
+                <label className={`route-field origin ${targetField === 'origin' ? 'active' : ''}`}>
+                  <img src={startDotIcon} alt="" width="8" height="8" className="field-marker" />
+                  <input
+                    type="text"
+                    className="field-input"
+                    value={origin}
+                    placeholder="Seleccionar parada"
+                    aria-label="Parada de origen"
+                    onFocus={() => setActiveField('origin')}
+                    onChange={(e) => { setOrigin(e.target.value); setActiveField('origin') }}
+                  />
+                  <img src={chevronDownIcon} alt="" width="16" height="16" className="field-chevron" />
+                </label>
+                <label className={`route-field dest ${targetField === 'dest' ? 'active' : ''}`}>
+                  <span className="field-marker">
+                    <img src={endTriangleIcon} alt="" width="6.9282" height="6" />
+                  </span>
+                  <input
+                    type="text"
+                    className="field-input"
+                    value={dest}
+                    placeholder="Seleccionar parada"
+                    aria-label="Parada de destino"
+                    onFocus={() => setActiveField('dest')}
+                    onChange={(e) => { setDest(e.target.value); setActiveField('dest') }}
+                  />
+                  <img src={chevronDownIcon} alt="" width="16" height="16" className="field-chevron" />
+                </label>
               </div>
-              {activeField === 'origin' && (
-                <ul className="field-suggest" role="listbox">
-                  {suggestions.map((s) => (
-                    <li key={s.id}>
-                      <button
-                        type="button"
-                        className="suggest-item"
-                        onClick={() => selectStop(s)}
-                      >
-                        <i className="fa-solid fa-location-dot" />
-                        <div className="suggest-body">
-                          <p className="suggest-name">{s.name}</p>
-                          <p className="suggest-route">{(s.routes || [s.route]).join(", ")}</p>
-                        </div>
-                      </button>
-                    </li>
-                  ))}
-                  {suggestions.length === 0 && (
-                    <li className="search-empty">Sin resultados</li>
-                  )}
-                </ul>
-              )}
+              <button type="button" className="swap-btn" onClick={swap} aria-label="Intercambiar origen y destino">
+                <img src={arrowUpDownIcon} alt="" width="20" height="20" />
+              </button>
             </div>
-            <div className={`field dest ${activeField === 'dest' ? 'active' : ''}`}>
-              <div className="field-body">
-                <span className="field-label">Destino</span>
-                <input
-                  type="text"
-                  className="field-input"
-                  value={dest}
-                  placeholder="Parada de destino"
-                  onFocus={() => setActiveField('dest')}
-                  onChange={(e) => { setDest(e.target.value); setActiveField('dest') }}
-                />
-              </div>
-              {activeField === 'dest' && (
-                <ul className="field-suggest" role="listbox">
-                  {suggestions.map((s) => (
-                    <li key={s.id}>
-                      <button
-                        type="button"
-                        className="suggest-item"
-                        onClick={() => selectStop(s)}
-                      >
-                        <i className="fa-solid fa-location-dot" />
-                        <div className="suggest-body">
-                          <p className="suggest-name">{s.name}</p>
-                          <p className="suggest-route">{(s.routes || [s.route]).join(", ")}</p>
-                        </div>
-                      </button>
-                    </li>
-                  ))}
-                  {suggestions.length === 0 && (
-                    <li className="search-empty">Sin resultados</li>
-                  )}
-                </ul>
-              )}
-            </div>
-            <button className="swap-btn" onClick={swap} aria-label="Intercambiar origen y destino">
-              <i className="fa-solid fa-arrows-up-down" />
-            </button>
           </div>
 
+          {targetField && (
+            <section className="section stop-picker">
+              <h2 className="section-title">Paradas disponibles</h2>
+              {suggestions.length === 0 ? (
+                <p className="search-empty">Sin resultados</p>
+              ) : (
+                <ul className="stops-list">
+                  {suggestions.map((s) => {
+                    const checked = s.name === targetValue
+                    return (
+                      <li key={s.id}>
+                        <button
+                          type="button"
+                          aria-pressed={checked}
+                          className={`stop-option ${checked ? 'selected' : ''}`}
+                          onClick={() => selectStop(s)}
+                        >
+                          <span className="stop-option-icon">
+                            <img src={checked ? mapPinSelectedIcon : mapPinIcon} alt="" width="18" height="18" />
+                          </span>
+                          <span className="stop-option-body">
+                            <span className="stop-option-name">{s.name}</span>
+                            <span className="stop-option-route">{(s.routes || [s.route]).join(', ')}</span>
+                          </span>
+                          <span className="stop-option-radio">
+                            {checked && <img src={checkIcon} alt="" width="12" height="12" />}
+                          </span>
+                        </button>
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
+            </section>
+          )}
         </div>
 
         {origin && dest && (
@@ -388,7 +392,7 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
                       style={{ width: '100%', textAlign: 'left', cursor: 'pointer' }}
                     >
                       <div className="stop-icon active">
-                        <i className="fa-solid fa-route" />
+                        <i className="fa-solid fa-route" aria-hidden="true" />
                       </div>
                       <div className="stop-body">
                         <p className="stop-name">{route.name}</p>
@@ -407,7 +411,7 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
                   {segmentStops.map((stopName, idx) => (
                     <div className="stop-card" key={`${stopName}-${idx}`}>
                       <div className={`stop-icon ${idx === 0 || idx === segmentStops.length - 1 ? 'active' : ''}`}>
-                        <i className={`fa-solid ${idx === 0 ? 'fa-location-dot' : idx === segmentStops.length - 1 ? 'fa-flag-checkered' : 'fa-circle'}`} />
+                        <i className={`fa-solid ${idx === 0 ? 'fa-location-dot' : idx === segmentStops.length - 1 ? 'fa-flag-checkered' : 'fa-circle'}`} aria-hidden="true" />
                       </div>
                       <div className="stop-body">
                         <p className="stop-name">{stopName}</p>
@@ -419,7 +423,7 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
                   ))}
                 </div>
                 <p className="stop-route" style={{ marginTop: 8 }}>
-                  Tenemos esta ruta definida con {selectedJourney.stopsCount} paradas. Te sirven estos buses:{' '}
+                  Tenemos esta ruta definida con {selectedJourney.stopsCount} paradas. {selectedJourney.buses.length === 1 ? 'Te sirve este bus:' : 'Te sirven estos buses:'}{' '}
                   {selectedJourney.buses.length
                     ? selectedJourney.buses.map((b) => `${b.code} (en ${b.eta})`).join(', ')
                     : 'sin buses disponibles'}
@@ -440,7 +444,7 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
                 loading="lazy"
               />
             ) : (
-              <div ref={mapRef} className="leaflet-map" style={{ height: '220px', width: '100%' }} />
+              <div ref={mapRef} className="leaflet-map" />
             )}
           </div>
           {(routeLoading || routeInfo || routeError) && (
@@ -449,7 +453,7 @@ export default function Search({ screen, onNavigate, searchOrigin, searchDest })
               {routeError && <span style={{ color: '#c0392b' }}>{routeError}</span>}
               {routeInfo && !routeLoading && (
                 <span>
-                  Ruta: {(routeInfo.distance / 1000).toFixed(2)} km · {Math.round(routeInfo.duration / 60)} min
+                  Ruta: {routeInfo.distance < 1000 ? `${Math.round(routeInfo.distance)} m` : `${(routeInfo.distance / 1000).toLocaleString('es-CO', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} km`} · {Math.round(routeInfo.duration / 60)} min
                 </span>
               )}
             </div>

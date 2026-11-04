@@ -185,7 +185,7 @@ function socialLogin(provider, name, email) {
 }
 
 export function loginWithGoogle() {
-  return socialLogin('google', 'Usuario Google', 'usuario.google@movicampus.com')
+  return socialLogin('google', 'Usuario Google', 'usuario.google@ibero.edu.co')
 }
 
 export const signInWithGoogle = loginWithGoogle
@@ -194,7 +194,7 @@ export const loginGoogle = loginWithGoogle
 export const googleSignIn = loginWithGoogle
 
 export function loginWithApple() {
-  return socialLogin('apple', 'Usuario Apple', 'usuario.apple@movicampus.com')
+  return socialLogin('apple', 'Usuario Apple', 'usuario.apple@ibero.edu.co')
 }
 
 export const signInWithApple = loginWithApple

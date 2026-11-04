@@ -1,5 +1,5 @@
 [
-  { "id": 1, "badge": "Directo", "origin": "Parada Portal Norte", "dest": "Parada Calle 100", "stops": 8, "bus": "Bus en 2 min" },
-  { "id": 2, "badge": "Directo", "origin": "Parada Usaquén Centro", "dest": "Parada Toberín", "stops": 4, "bus": "Bus en 4 min" },
-  { "id": 3, "badge": "Directo", "origin": "Parada Rosales", "dest": "Parada Alcalá", "stops": 6, "bus": "Bus en 3 min" }
+  {"id": 1, "badge": "Directo", "origin": "Parada Biblioteca Principal", "dest": "Parada Fac. Ingeniería", "stops": 3, "bus": "Bus en 2 min"},
+  {"id": 2, "badge": "Directo", "origin": "Parada Comedor", "dest": "Parada Deportivo", "stops": 3, "bus": "Bus en 4 min"},
+  {"id": 3, "badge": "Directo", "origin": "Parada Gimnasio", "dest": "Parada Auditorio Mayor", "stops": 3, "bus": "Bus en 4 min"}
 ]

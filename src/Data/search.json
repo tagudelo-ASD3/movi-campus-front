@@ -2,175 +2,96 @@
   "stops": [
     {
       "id": 1,
-      "name": "Parada Usaqu\u00e9n Centro",
-      "route": "Ruta Usaqu\u00e9n - Tober\u00edn",
+      "name": "Parada Biblioteca Principal",
+      "route": "Ruta Campus Norte",
       "routes": [
-        "Ruta Usaqu\u00e9n - Tober\u00edn"
+        "Ruta Campus Norte",
+        "Ruta Campus Sur"
       ],
-      "lat": 4.694,
-      "lon": -74.026
+      "lat": 4.602,
+      "lon": -74.0655
     },
     {
       "id": 2,
-      "name": "Parada Cedritos",
-      "route": "Ruta Usaqu\u00e9n - Tober\u00edn",
+      "name": "Parada Comedor",
+      "route": "Ruta Campus Norte",
       "routes": [
-        "Ruta Usaqu\u00e9n - Tober\u00edn"
+        "Ruta Campus Norte",
+        "Ruta Acceso Norte"
       ],
-      "lat": 4.7,
-      "lon": -74.033
+      "lat": 4.6028,
+      "lon": -74.0648
     },
     {
       "id": 3,
-      "name": "Parada Chic\u00f3 Norte",
-      "route": "Ruta Chic\u00f3 - Rosales",
+      "name": "Parada Fac. Ingeniería",
+      "route": "Ruta Campus Norte",
       "routes": [
-        "Ruta Chic\u00f3 - Rosales"
+        "Ruta Campus Norte"
       ],
-      "lat": 4.682,
-      "lon": -74.045
+      "lat": 4.6036,
+      "lon": -74.066
     },
     {
       "id": 4,
-      "name": "Parada Country",
-      "route": "Ruta Chic\u00f3 - Rosales",
+      "name": "Parada Estacionamiento Norte",
+      "route": "Ruta Campus Norte",
       "routes": [
-        "Ruta Chic\u00f3 - Rosales"
+        "Ruta Campus Norte",
+        "Ruta Acceso Norte"
       ],
-      "lat": 4.675,
-      "lon": -74.048
+      "lat": 4.6046,
+      "lon": -74.0652
     },
     {
       "id": 5,
-      "name": "Parada Rosales",
-      "route": "Ruta Chic\u00f3 - Rosales",
+      "name": "Parada Gimnasio",
+      "route": "Ruta Acceso Norte",
       "routes": [
-        "Ruta Chic\u00f3 - Rosales"
+        "Ruta Acceso Norte"
       ],
-      "lat": 4.665,
-      "lon": -74.052
+      "lat": 4.6008,
+      "lon": -74.0642
     },
     {
       "id": 6,
-      "name": "Parada San Patricio",
-      "route": "Ruta Chic\u00f3 - Rosales",
+      "name": "Parada Deportivo",
+      "route": "Ruta Acceso Norte",
       "routes": [
-        "Ruta Chic\u00f3 - Rosales"
+        "Ruta Acceso Norte"
       ],
-      "lat": 4.672,
-      "lon": -74.04
+      "lat": 4.5998,
+      "lon": -74.065
     },
     {
       "id": 7,
-      "name": "Parada Mazur\u00e9n",
-      "route": "Ruta Usaqu\u00e9n - Tober\u00edn",
+      "name": "Parada Auditorio Mayor",
+      "route": "Ruta Acceso Norte",
       "routes": [
-        "Ruta Usaqu\u00e9n - Tober\u00edn"
+        "Ruta Acceso Norte"
       ],
-      "lat": 4.72,
-      "lon": -74.038
+      "lat": 4.6004,
+      "lon": -74.0668
     },
     {
       "id": 8,
-      "name": "Parada Tober\u00edn",
-      "route": "Ruta Usaqu\u00e9n - Tober\u00edn",
+      "name": "Parada Rectoría",
+      "route": "Ruta Campus Sur",
       "routes": [
-        "Ruta Usaqu\u00e9n - Tober\u00edn"
+        "Ruta Campus Sur"
       ],
-      "lat": 4.735,
-      "lon": -74.042
+      "lat": 4.6012,
+      "lon": -74.0675
     },
     {
       "id": 9,
-      "name": "Parada Calle 100",
-      "route": "Ruta Autopista Norte",
+      "name": "Parada Estacionamiento Sur",
+      "route": "Ruta Campus Sur",
       "routes": [
-        "Ruta Autopista Norte",
-        "Ruta Chic\u00f3 - Rosales"
+        "Ruta Campus Sur"
       ],
-      "lat": 4.668,
-      "lon": -74.055
-    },
-    {
-      "id": 10,
-      "name": "Parada Calle 106",
-      "route": "Ruta Autopista Norte",
-      "routes": [
-        "Ruta Autopista Norte"
-      ],
-      "lat": 4.678,
-      "lon": -74.05
-    },
-    {
-      "id": 11,
-      "name": "Parada Calle 116",
-      "route": "Ruta Autopista Norte",
-      "routes": [
-        "Ruta Autopista Norte",
-        "Ruta Usaqu\u00e9n - Tober\u00edn"
-      ],
-      "lat": 4.69,
-      "lon": -74.046
-    },
-    {
-      "id": 12,
-      "name": "Parada Calle 127",
-      "route": "Ruta Autopista Norte",
-      "routes": [
-        "Ruta Autopista Norte"
-      ],
-      "lat": 4.705,
-      "lon": -74.041
-    },
-    {
-      "id": 13,
-      "name": "Parada Calle 140",
-      "route": "Ruta Autopista Norte",
-      "routes": [
-        "Ruta Autopista Norte"
-      ],
-      "lat": 4.725,
-      "lon": -74.036
-    },
-    {
-      "id": 14,
-      "name": "Parada Calle 147",
-      "route": "Ruta Autopista Norte",
-      "routes": [
-        "Ruta Autopista Norte"
-      ],
-      "lat": 4.74,
-      "lon": -74.032
-    },
-    {
-      "id": 15,
-      "name": "Parada Calle 161",
-      "route": "Ruta Autopista Norte",
-      "routes": [
-        "Ruta Autopista Norte"
-      ],
-      "lat": 4.755,
-      "lon": -74.028
-    },
-    {
-      "id": 16,
-      "name": "Parada Portal Norte",
-      "route": "Ruta Autopista Norte",
-      "routes": [
-        "Ruta Autopista Norte"
-      ],
-      "lat": 4.762,
-      "lon": -74.025
-    },
-    {
-      "id": 17,
-      "name": "Parada Alcal\u00e1",
-      "route": "Ruta Chic\u00f3 - Rosales",
-      "routes": [
-        "Ruta Chic\u00f3 - Rosales"
-      ],
-      "lat": 4.71,
-      "lon": -74.06
+      "lat": 4.599,
+      "lon": -74.0662
     }
   ]
 }

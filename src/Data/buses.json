@@ -1,7 +1,7 @@
 {
   "buses": [
-    { "id": 1, "code": "Bus AN-101", "route": "Ruta Autopista Norte", "status": "En ruta", "eta": "2 min" },
-    { "id": 2, "code": "Bus UT-201", "route": "Ruta Usaquén - Toberín", "status": "En ruta", "eta": "4 min" },
-    { "id": 3, "code": "Bus CR-301", "route": "Ruta Chicó - Rosales", "status": "En ruta", "eta": "3 min" }
+    {"id": 1, "code": "Bus CN-101", "route": "Ruta Campus Norte", "status": "En ruta", "eta": "2 min"},
+    {"id": 2, "code": "Bus AN-201", "route": "Ruta Acceso Norte", "status": "En ruta", "eta": "4 min"},
+    {"id": 3, "code": "Bus CS-301", "route": "Ruta Campus Sur", "status": "En ruta", "eta": "3 min"}
   ]
 }

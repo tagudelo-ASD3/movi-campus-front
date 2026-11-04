@@ -8,7 +8,7 @@ export default function Favorites({ screen, onNavigate }) {
   return (
     <div className="fav-screen">
       <header className="fav-header">
-        <h1 className="fav-title">Mis Favoritos</h1>
+        <h1 className="fav-title">Mis favoritos</h1>
         <span className="count-badge">{favorites.length} RUTAS</span>
       </header>
 
@@ -40,12 +40,12 @@ export default function Favorites({ screen, onNavigate }) {
 
             <div className="card-footer">
               <div className="footer-left">
-                <i className="fa-solid fa-route" />
+                <i className="fa-solid fa-route" aria-hidden="true" />
                 <span>{f.stops} paradas</span>
               </div>
               <span className="bus-status">{f.bus}</span>
               <button className="heart-btn" aria-label="Quitar de favoritos" onClick={(e) => e.stopPropagation()}>
-                <i className="fa-solid fa-heart" />
+                <i className="fa-solid fa-heart" aria-hidden="true" />
               </button>
             </div>
           </article>

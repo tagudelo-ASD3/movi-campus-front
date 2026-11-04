@@ -1,7 +1,10 @@
 {
   "user": {
-    "name": "Cristian",
-    "email": "Cristian@universidad.edu",
+    "name": "Ana María",
+    "lastName": "Pérez",
+    "email": "ana.maria@ibero.edu.co",
+    "phone": "+57 1234 5678",
+    "career": "Ingeniería en Sistemas",
     "version": "1.0.2"
   }
 }

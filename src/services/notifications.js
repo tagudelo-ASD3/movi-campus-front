@@ -67,9 +67,9 @@ export function seedNotifications() {
   if (getNotifications().length > 0) return
   const samples = [
     { type: 'service', title: 'Cambio de servicio', message: 'La Ruta Campus Norte presenta un desvío temporal por mantenimiento.' },
-    { type: 'favorite', title: 'Ruta favorita', message: 'Tu ruta favorita "Parada Biblioteca Principal → Parada Sede Norte" tiene un bus disponible.' },
-    { type: 'stop', title: 'Parada cercana', message: 'Estás cerca de Parada Cafetería. Tu parada de bajada es la siguiente.' },
-    { type: 'operational', title: 'Aviso operativo', message: 'Reporte de incidencia en Parada Laboratorios. Se recomienda usar ruta alterna.' },
+    { type: 'favorite', title: 'Ruta favorita', message: 'Tu ruta favorita "Parada Biblioteca Principal → Parada Fac. Ingeniería" tiene un bus disponible.' },
+    { type: 'stop', title: 'Parada cercana', message: 'Estás cerca de Parada Comedor. Tu parada de bajada es la siguiente.' },
+    { type: 'operational', title: 'Aviso operativo', message: 'Reporte de incidencia en Parada Gimnasio. Se recomienda usar ruta alterna.' },
   ]
   samples.forEach((s) => addNotification(s))
 }
